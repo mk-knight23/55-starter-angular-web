@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #dd0031;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 transition-colors duration-500 antialiased;
+  min-height: 100vh;
+}
+
+.dark body {
+  @apply bg-slate-950 text-slate-50;
+}
+
+@layer components {
+  .btn-canonical {
+    @apply px-6 py-2.5 rounded-2xl font-black text-xs uppercase tracking-widest transition-all active:scale-95;
+  }
+  .btn-primary {
+    @apply bg-angular-primary text-white shadow-xl shadow-angular-primary/20 hover:shadow-angular-primary/40;
+  }
+  .feature-card {
+    @apply bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/5 rounded-[2.5rem] p-10 shadow-sm hover:shadow-2xl hover:border-angular-primary transition-all duration-500;
+  }
+}
+
+.font-display {
+  font-family: 'Space Grotesk', sans-serif;
+}
