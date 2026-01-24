@@ -1,59 +1,165 @@
-# AngularCanonicalStarter
+# AngularCanonical - Production-Grade Angular Starter
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.1.
+<div align="center">
 
-## Development server
+![Angular](https://img.shields.io/badge/Angular_21- DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-To start a local development server, run:
+**The gold standard Angular 21 starter featuring Signals, standalone components, and inline SVG icons**
+
+[Live Demo](https://angularcanonical.vercel.app) | [GitHub](https://github.com/mk-knight23/58-Angular-Web-Starter)
+
+</div>
+
+---
+
+## Overview
+
+AngularCanonical is a production-grade starter kit that establishes the gold standard for modern Angular development. It features Angular 21's latest innovations including Signals architecture and standalone components.
+
+### Problem Statement
+
+Many Angular starters rely on outdated patterns, heavy dependencies, and complex configurations that slow down development and increase bundle sizes.
+
+### Solution
+
+AngularCanonical provides:
+- **Angular 21 Signals**: Fine-grained reactivity with zero Zone.js overhead
+- **Standalone Components**: Minimal footprint, no ngModules
+- **Zero External Icons**: Inline SVGs eliminate runtime dependencies
+- **Theme Persistence**: Dark/Light mode with localStorage
+
+---
+
+## Features Comparison
+
+| Feature | Legacy Angular | AngularCanonical (v2.0) |
+| :--- | :--- | :--- |
+| **Framework** | Angular 14-18 | **Angular 21** |
+| **Reactivity** | Zone.js | **Fine-grained Signals** |
+| **Architecture** | NgModules | **Standalone Components** |
+| **Icons** | External library | **Zero-dependency inline SVGs** |
+| **Theme** | Fixed | **Dark + Light with persistence** |
+| **Change Detection** | Full tree | **Component-level** |
+
+---
+
+## Tech Stack
+
+- **Framework**: Angular 21 (Standalone + Signals)
+- **Styling**: Tailwind CSS 3.4
+- **Icons**: Inline SVGs (no external dependencies)
+- **TypeScript**: 5.9+ with strict mode
+
+---
+
+## Architecture
+
+```
+src/
+└── app/
+    ├── app.component.ts     # Root with Signals & theme
+    ├── app.config.ts        # Application configuration
+    ├── app.routes.ts        # Route definitions
+    └── main.ts              # Bootstrap entry point
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 20.x or higher
+- npm 10.x or higher
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/mk-knight23/58-Angular-Web-Starter.git
+cd 58-Angular-Web-Starter
+
+# Install dependencies
+npm install
+
+# Start development server
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
+# Build for production
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## Theme System
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+AngularCanonical includes a fully-featured dark/light mode with:
 
-```bash
-ng test
+- **System Detection**: Auto-detects OS preference
+- **Manual Toggle**: Switch via navbar button
+- **Persistence**: Preference saved in localStorage
+- **Smooth Transitions**: 500ms CSS transitions
+
+---
+
+## Signal Architecture
+
+The starter demonstrates Angular 21's signal-based reactivity:
+
+```typescript
+export class App {
+  isDarkMode = signal(true);
+  count = signal(42);
+
+  toggleTheme() {
+    this.isDarkMode.update(v => !v);
+    this.applyTheme();
+    localStorage.setItem('theme', this.isDarkMode() ? 'dark' : 'light');
+  }
+}
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## Accessibility
+
+The theme includes comprehensive accessibility features:
+
+- **ARIA Labels**: All interactive elements labeled
+- **Keyboard Navigation**: Full keyboard support
+- **Focus States**: Visible focus indicators
+- **Color Contrast**: WCAG AA compliant
+
+---
+
+## Deployment
+
+Compatible with any static hosting:
+
+- **Vercel**: `npx vercel --prod`
+- **Netlify**: Connect repository
+- **GitHub Pages**: Deploy `dist/` folder
 
 ```bash
-ng e2e
+# Deploy to Vercel
+npx vercel --prod --name angularcanonical
+
+# Preview production build
+ng build && npm run preview
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## License
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+MIT License - See [LICENSE](LICENSE) for details.
+
+---
+
+<div align="center">
+
+**Built with Angular 21 + Signals + Tailwind CSS**
+
+</div>
