@@ -1,32 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --primary: #dd0031;
+  --color-retro-green: #33ff00;
+  --color-retro-amber: #ffb000;
+  --color-retro-red: #ff3333;
+  --color-crt-black: #0a0a0a;
+  --color-crt-dark: #1a1a1a;
+  --font-pixel: 'VT323', monospace;
+  --crt-flicker: 0.02;
+}
+
+* {
+  image-rendering: pixelated;
 }
 
 body {
-  @apply bg-slate-50 text-slate-900 transition-colors duration-500 antialiased;
+  background-color: var(--color-crt-black);
+  color: var(--color-retro-green);
+  font-family: 'VT323', monospace;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.dark body {
-  @apply bg-slate-950 text-slate-50;
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes flicker {
+  0% { opacity: 0.97; }
+  5% { opacity: 0.95; }
+  10% { opacity: 0.9; }
+  15% { opacity: 0.95; }
+  20% { opacity: 0.99; }
+  50% { opacity: 0.95; }
+  55% { opacity: 0.93; }
+  60% { opacity: 0.9; }
+  65% { opacity: 0.95; }
+  70% { opacity: 0.99; }
+  75% { opacity: 0.93; }
+  80% { opacity: 0.9; }
+  85% { opacity: 0.96; }
+  90% { opacity: 0.98; }
+  95% { opacity: 0.95; }
+  100% { opacity: 0.97; }
+}
+
+@keyframes textShadow {
+  0% { text-shadow: 0 0 2px var(--color-retro-green), 0 0 5px var(--color-retro-green); }
+  50% { text-shadow: 0 0 4px var(--color-retro-green), 0 0 8px var(--color-retro-green); }
+  100% { text-shadow: 0 0 2px var(--color-retro-green), 0 0 5px var(--color-retro-green); }
+}
+
+.crt-overlay::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.1)
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.crt-overlay::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(18, 16, 16, 0.1);
+  animation: flicker 0.15s infinite;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(51, 255, 0, 0.3);
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+.pixel-border {
+  box-shadow:
+    -4px 0 0 0 var(--color-retro-green),
+    4px 0 0 0 var(--color-retro-green),
+    0 -4px 0 0 var(--color-retro-green),
+    0 4px 0 0 var(--color-retro-green);
+  margin: 4px;
 }
 
 @layer components {
-  .btn-canonical {
-    @apply px-6 py-2.5 rounded-2xl font-black text-xs uppercase tracking-widest transition-all active:scale-95;
+  .pixel-button {
+    @apply px-8 py-4 text-xl font-mono uppercase cursor-pointer transition-all duration-100;
+    background: transparent;
+    border: 3px solid var(--color-retro-green);
+    color: var(--color-retro-green);
+    box-shadow:
+      inset -3px -3px 0 0 rgba(51, 255, 0, 0.2),
+      inset 3px 3px 0 0 rgba(51, 255, 0, 0.2);
   }
-  .btn-primary {
-    @apply bg-angular-primary text-white shadow-xl shadow-angular-primary/20 hover:shadow-angular-primary/40;
+
+  .pixel-button:hover {
+    background: var(--color-retro-green);
+    color: var(--color-crt-black);
   }
-  .feature-card {
-    @apply bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/5 rounded-[2.5rem] p-10 shadow-sm hover:shadow-2xl hover:border-angular-primary transition-all duration-500;
+
+  .pixel-button:active {
+    transform: scale(0.95);
+  }
+
+  .blink {
+    animation: textShadow 1.5s infinite;
+  }
+
+  .glitch-text {
+    animation: textShadow 2s infinite;
   }
 }
 
-.font-display {
-  font-family: 'Space Grotesk', sans-serif;
+.corner-brackets::before {
+  content: "[";
+  margin-right: 0.5rem;
+  color: var(--color-retro-green);
+}
+
+.corner-brackets::after {
+  content: "]";
+  margin-left: 0.5rem;
+  color: var(--color-retro-green);
+}
+
+html {
+  scroll-behavior: smooth;
 }
