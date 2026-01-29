@@ -4,6 +4,10 @@
 
 A production-grade Angular 21 starter featuring Zoneless signals, CRT scanline effects, and authentic 90s terminal aesthetics.
 
+## Live Demo
+
+- **Vercel**: https://angularcanonical.vercel.app
+
 ## Features
 - 🚀 Angular 21 + Zoneless + Signals
 - 🎮 90s Retro / CRT / Pixel UI Theme
@@ -18,19 +22,20 @@ A production-grade Angular 21 starter featuring Zoneless signals, CRT scanline e
 - **Styling**: Tailwind CSS v4
 - **Fonts**: VT323 (Google Fonts)
 
-## Retro Features
-- CRT scanline overlay effects
-- Green terminal color scheme (#33ff00)
-- Pixelated borders and buttons
-- Glitch text animations
-- Terminal-style UI components
-- Blinking cursor effects
-
 ## Quick Start
 ```bash
 npm install
 ng serve
 ```
+
+## Build
+```bash
+npm run build
+```
+
+## Deployment
+
+Deployed to **Vercel** with Angular adapter. Push to main branch for automatic deployment.
 
 ## Retro Theme Elements
 - **Colors**: Terminal green (#33ff00), amber (#ffb000)
