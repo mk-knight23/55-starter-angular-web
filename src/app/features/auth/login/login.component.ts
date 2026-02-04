@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -91,12 +91,15 @@ import { AppValidators } from '../../../shared/forms';
   `]
 })
 export class LoginComponent extends BaseFormComponent {
+  private fb = inject(FormBuilder);
+  private router = inject(Router);
+
   form = this.fb.group({
     email: ['', [Validators.required, AppValidators.email]],
     password: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor() {
     super();
   }
 

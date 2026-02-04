@@ -1,4 +1,4 @@
-import { AbstractControl, ValidationErrors, ValidatorFn, AsyncValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn, AsyncValidatorFn, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 /**
@@ -34,9 +34,9 @@ export class AppValidators {
    */
   static mustMatch(controlName: string, matchingControlName: string): ValidatorFn {
     return (group: AbstractControl): ValidationErrors | null => {
-      const formGroup = group as { [key: string]: AbstractControl };
-      const control = formGroup[controlName];
-      const matchingControl = formGroup[matchingControlName];
+      const formGroup = group as FormGroup;
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
 
       if (!control || !matchingControl) {
         return null;
