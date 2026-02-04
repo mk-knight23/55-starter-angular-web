@@ -6,7 +6,7 @@ A production-grade Angular 21 starter featuring Zoneless signals, CRT scanline e
 
 ## Live Demo
 
-- **Vercel**: https://angularcanonical.vercel.app
+- **Vercel**: https://55-starter-angular-web.vercel.app ✅
 
 ## Features
 - 🚀 Angular 21 + Zoneless + Signals
