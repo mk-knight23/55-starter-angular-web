@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule, MatButtonModule, MatCardModule],
   template: `
     <div class="dashboard">
       <div class="page-header">
@@ -47,6 +50,35 @@ import { CommonModule } from '@angular/common';
       </div>
 
       <div class="content-section">
+        <div class="card">
+          <div class="card-header">
+            <h2>Quick Actions</h2>
+          </div>
+          <div class="actions-grid">
+            <a routerLink="/profile" class="action-card">
+              <div class="action-icon">👤</div>
+              <div class="action-content">
+                <h3>Update Profile</h3>
+                <p class="text-secondary">Edit your personal information and settings</p>
+              </div>
+            </a>
+            <a routerLink="/dashboard" class="action-card">
+              <div class="action-icon">📈</div>
+              <div class="action-content">
+                <h3>View Analytics</h3>
+                <p class="text-secondary">Track your performance and metrics</p>
+              </div>
+            </a>
+            <a routerLink="/settings" class="action-card">
+              <div class="action-icon">⚙️</div>
+              <div class="action-content">
+                <h3>Settings</h3>
+                <p class="text-secondary">Configure your preferences</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
         <div class="card">
           <h2>Recent Activity</h2>
           <table>
@@ -130,6 +162,53 @@ import { CommonModule } from '@angular/common';
 
     .content-section {
       margin-top: var(--spacing-xl);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .actions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .action-card {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-md);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+    }
+
+    .action-card:hover {
+      border-color: var(--primary-color);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .action-icon {
+      font-size: 2rem;
+    }
+
+    .action-content h3 {
+      margin: 0 0 var(--spacing-xs) 0;
+      color: var(--text-primary);
+    }
+
+    .action-content p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: var(--font-size-sm);
     }
 
     table {

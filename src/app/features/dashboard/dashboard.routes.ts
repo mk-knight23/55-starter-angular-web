@@ -7,5 +7,11 @@ export const dashboardRoutes: Routes = [
     loadComponent: () =>
       import('./dashboard.component').then((m) => m.DashboardComponent),
     canActivate: [authGuard]
+  },
+  {
+    path: 'profile',
+    loadComponent: () =>
+      import('./profile-form/profile-form.component').then((m) => m.ProfileFormComponent),
+    canActivate: [authGuard]
   }
 ];
